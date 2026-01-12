@@ -1,10 +1,9 @@
 class QueensBoard:
-    """Modellazione del problema delle N-Regine come spazio degli stati."""
+    """n-Queens problem as state space"""
     def __init__(self, size):
         self.size = size
 
     def get_initial_config(self):
-        # Stato: tupla di interi. L'indice rappresenta la colonna, il valore la riga.
         return () 
 
     def is_goal_reached(self, config):
@@ -23,7 +22,7 @@ class QueensBoard:
 
     def _is_safe(self, current_config, new_col, new_row):
         for col, row in enumerate(current_config):
-            # Controllo riga e diagonali
+            # Row and diagonal check
             if row == new_row or abs(row - new_row) == abs(col - new_col):
                 return False
         return True

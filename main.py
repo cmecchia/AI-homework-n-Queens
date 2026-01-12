@@ -4,7 +4,7 @@ import astar_engine as astar
 from csp_logic import run_queens_csp
 
 def start_experiment():
-    # Taglie del problema per il test
+    
     test_sizes = [4, 6, 8, 10, 12, 13, 14]
     data_points = {"astar": [], "csp": []}
 
@@ -12,11 +12,11 @@ def start_experiment():
     print("-" * 55)
 
     for n in test_sizes:
-        # Esecuzione A*
+        # A* execution
         env = QueensBoard(n)
         res_a = astar.execute_astar(env, astar.h_remaining_queens)
         
-        # Esecuzione CSP
+        # CSP execution
         res_c = run_queens_csp(n)
         
         data_points["astar"].append(res_a)
@@ -30,7 +30,7 @@ def generate_plots(sizes, data):
     plt.style.use('ggplot')
     fig, axes = plt.subplots(1, 2, figsize=(15, 6))
 
-    # Plot 1: Tempi di Esecuzione (Scala Logaritmica per vedere meglio la crescita)
+    # Plot 1
     axes[0].plot(sizes, [d['duration'] for d in data["astar"]], marker='o', linewidth=2, label='A* Search')
     axes[0].plot(sizes, [d['exec_time'] for d in data["csp"]], marker='s', linewidth=2, label='CSP Solver')
     axes[0].set_yscale('log')
@@ -40,7 +40,7 @@ def generate_plots(sizes, data):
     axes[0].legend()
     axes[0].grid(True, which="both", ls="-", alpha=0.5)
 
-    # Plot 2: Memoria A* (Nodi massimi)
+    # Plot 2
     axes[1].bar(sizes, [d['memory_peak'] for d in data["astar"]], color='skyblue', alpha=0.8)
     axes[1].set_title("A* Memory Usage (Peak Nodes)")
     axes[1].set_xlabel("Problem Size (N)")
@@ -48,7 +48,6 @@ def generate_plots(sizes, data):
 
     plt.tight_layout()
     plt.savefig('analysis_output.png')
-    print("\n[INFO] Analisi completata. Il grafico è stato salvato come 'analysis_output.png'")
 
 if __name__ == "__main__":
     start_experiment()
