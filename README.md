@@ -43,7 +43,6 @@ python main.py
     *   Execution time (seconds).
     *   Number of nodes expanded and generated (A*).
     *   Memory peak (maximum nodes held in memory simultaneously).
-    *   Average branching factor.
 *   **Data Visualization**: 
     *   **Execution Time Comparison**: A chart (logarithmic scale) showing how both methods scale as the board size increases.
     *   **Memory Usage Chart**: A bar chart representing the peak number of nodes stored in memory during the A* search.
